@@ -1,0 +1,204 @@
+﻿<Window x:Class="Trainings2.SportsmanInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Trainings2"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Trainings"
+        Height="450"
+        Width="740"
+        BorderBrush="#FF310C1E"
+        Background="#FF9AE1D4"
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" 
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="123*"/>
+            <ColumnDefinition Width="244*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Margin="20" Content="Назад"
+                Click="Button_Click_Exit"/>
+
+        <materialDesign:Card HorizontalAlignment="Center" 
+                             VerticalAlignment="Top" 
+                             Margin="10"
+                             Height="320" 
+                             Width="200" 
+                             Grid.Column="0">
+
+            <StackPanel Orientation="Vertical" 
+                        Width="200"
+                        Height="320">
+
+                <Label HorizontalAlignment="Center"
+                       VerticalAlignment="Top" 
+                       Content="Продукты"
+                       FontSize="16"/>
+
+                <DataGrid x:Name="MealDataGrid"
+                          HorizontalAlignment="Center"
+                          Width="200"
+                          Margin="0 10 0 0"
+                          Height="200"
+                          VerticalAlignment="Top"
+                          CanUserAddRows="False"
+                          Background="#FFFAFAFA" 
+                          AutoGenerateColumns="False" 
+                          MouseUp="MealDataGrid_MouseUp">
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn x:Name="mealname" 
+                                    Binding="{Binding mealname, NotifyOnSourceUpdated=True}" 
+                                    Header="Название" 
+                                    IsReadOnly="True" 
+                                    Width="Auto"/>
+
+                        <DataGridTextColumn x:Name="calories" 
+                                    Binding="{Binding calories, NotifyOnSourceUpdated=True}" 
+                                    Header="Калории" 
+                                    IsReadOnly="True" 
+                                    Width="Auto" />    
+                        
+                    </DataGrid.Columns>
+
+                    <DataGrid.BorderBrush>
+                        <SolidColorBrush Color="#FFE91E63" Opacity="0.2"/>
+                    </DataGrid.BorderBrush>
+
+                </DataGrid>
+
+                <Button
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0 20 15 0"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                    ToolTip="Добавить новое блюдо" 
+                    Click="Button_Click_CreateMeal">
+                    <materialDesign:PackIcon Kind="Plus"
+                                             Height="24"
+                                             Width="24" />
+                </Button>
+
+                <Button
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Margin="15 -40 15 0"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                    ToolTip="Удалить блюдо" 
+                    Click="Button_Click_DeleteMeal">
+                    <materialDesign:PackIcon Kind="Minus"
+                                             Height="24"
+                                             Width="24" />
+                </Button>
+            </StackPanel>
+        </materialDesign:Card>
+
+
+        <materialDesign:Card HorizontalAlignment="Center" 
+                             VerticalAlignment="Top" 
+                             Margin="10"
+                             Height="320" 
+                             Width="450" 
+                             Grid.Column="1">
+
+            <StackPanel Orientation="Vertical" 
+                        Width="440"
+                        Height="320">
+
+                <Label HorizontalAlignment="Center"
+                       VerticalAlignment="Top" 
+                       Content="Питание"
+                       FontSize="16"/>
+
+                <DataGrid x:Name="EatingDataGrid"
+                          HorizontalAlignment="Center"
+                          Width="400"
+                          Margin="0 10 0 0"
+                          Height="200"
+                          VerticalAlignment="Top"
+                          CanUserAddRows="False"
+                          Background="#FFFAFAFA" 
+                          AutoGenerateColumns="False" >
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn x:Name="date" 
+                                    Binding="{Binding date, NotifyOnSourceUpdated=True, StringFormat={}{0:dd/MM}}" 
+                                    Header="Дата" 
+                                    IsReadOnly="True" 
+                                    Width="60"/>
+
+                        <DataGridTextColumn x:Name="morning" 
+                                    Binding="{Binding morning, NotifyOnSourceUpdated=True}" 
+                                    Header="Завтрак" 
+                                    IsReadOnly="True" 
+                                    Width="100" />
+
+                        <DataGridTextColumn x:Name="lunch" 
+                                    Binding="{Binding lunch, NotifyOnSourceUpdated=True}" 
+                                    Header="Обед" 
+                                    IsReadOnly="True" 
+                                    Width="100"/>
+
+                        <DataGridTextColumn x:Name="diner" 
+                                    Binding="{Binding diner, NotifyOnSourceUpdated=True}" 
+                                    Header="Ужин" 
+                                    IsReadOnly="True" 
+                                    Width="90"/>
+
+                    </DataGrid.Columns>
+
+                    <DataGrid.BorderBrush>
+                        <SolidColorBrush Color="#FFE91E63" Opacity="0.2"/>
+                    </DataGrid.BorderBrush>
+
+                </DataGrid>
+
+                <DatePicker Name="Calendar"
+                    materialDesign:HintAssist.Hint="Выберите дату"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
+                    Grid.Column="1" 
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Margin="20 20 20 0"
+                    Width="120"
+                    Height="40"
+                    SelectedDateChanged="Calendar_SelectedDateChanged"/>
+
+                <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
+                          x:Name="TypeDay"
+                          Margin="150 -30 0 0"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left" 
+                          Width="100">
+                </ComboBox>
+
+                <TextBlock x:Name="MealName"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           Margin="0 -20 90 0"
+                           Width="70"
+                           Height="20"
+                           />
+                <Button
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="20 -40 20 0"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                    ToolTip="Добавить информацию о питании" 
+                    Click="Button_Click_CreateEating">
+                    <materialDesign:PackIcon Kind="Plus"
+                                             Height="24"
+                                             Width="24" />
+                </Button>
+
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</Window>

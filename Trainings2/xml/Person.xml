@@ -1,0 +1,39 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Table>
+    <PersonID>1</PersonID>
+    <Login>trener</Login>
+    <Name>Михайлович</Name>
+    <Sname>Юрий</Sname>
+    <Phone>2345678</Phone>
+    <Sex>м</Sex>
+    <Age>34</Age>
+  </Table>
+  <Table>
+    <PersonID>2</PersonID>
+    <Login>alex</Login>
+    <Name>Александр</Name>
+    <Sname>Иванов</Sname>
+    <Phone>234567</Phone>
+    <Sex>м</Sex>
+    <Age>20</Age>
+  </Table>
+  <Table>
+    <PersonID>3</PersonID>
+    <Login>test1</Login>
+    <Name>test</Name>
+    <Sname>test</Sname>
+    <Phone>12345</Phone>
+    <Sex>м</Sex>
+    <Age>19</Age>
+  </Table>
+  <Table>
+    <PersonID>4</PersonID>
+    <Login>test</Login>
+    <Name>test</Name>
+    <Sname>test</Sname>
+    <Phone>1234567</Phone>
+    <Sex>м</Sex>
+    <Age>34</Age>
+  </Table>
+</NewDataSet>

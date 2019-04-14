@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Table>
+    <CoachID>1</CoachID>
+    <PersonID>1</PersonID>
+  </Table>
+  <Table>
+    <CoachID>2</CoachID>
+    <PersonID>3</PersonID>
+  </Table>
+</NewDataSet>
